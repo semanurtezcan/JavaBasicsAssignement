@@ -1,0 +1,85 @@
+
+import java.io.File;
+import java.util.InputMismatchException;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Calculator {
+	
+	Scanner scanner= new Scanner(System.in);
+	
+	public void Operations(){
+		
+		try {
+			
+			System.out.println("İşlem seçiniz: ");
+			System.out.println("1.Toplama");
+			System.out.println("2.ÇIkarma");
+			System.out.println("3.Çarpma");
+			System.out.println("4.Bölme");
+			
+			int choice= scanner.nextInt();
+			
+			System.out.println("1.sayıyı giriniz: ");
+			int sayi1= scanner.nextInt();
+			
+			System.out.println("2.sayıyı giriniz: ");
+			int sayi2= scanner.nextInt();
+			
+			double sonuc=0;
+			
+			switch(choice){
+				case 1:
+					sonuc= sayi1+ sayi2;
+					break;
+				
+				case 2:
+					sonuc= sayi1- sayi2;
+					break;
+				
+				case 3:
+					sonuc= sayi1* sayi2;
+					break;
+				
+				case 4:
+					if(sayi2!=0) 
+					    sonuc= sayi1/ sayi2;
+					else 
+						throw new ArithmeticException ("Bölme işlemi geçersiz! İkinci sayı sıfır olamaz.");
+					break;
+				
+				default:
+					System.out.println("Geçersiz işlem!");
+					return ;
+					
+			}
+			
+			System.out.println("Sonuç: " +sonuc);
+		
+		}catch(InputMismatchException e){
+			System.out.println("Hata: Geçersiz giriş. Lütfen bir sayı girin.");
+			
+		}catch(ArithmeticException e) {
+			System.out.println("Hata: "+ e.getMessage());
+			
+		}finally {
+			scanner.close();
+		}
+		
+	}
+
+}
+
+
+
+
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Calculator hesapMakinesi= new Calculator();
+		hesapMakinesi.Operations();
+	
+	}
+	
+}
